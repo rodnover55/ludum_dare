@@ -5,6 +5,8 @@ define(['baseManActor', 'ability', 'baseTool'], function(baseManActor, Ability, 
         self.name = options.name;
         self.speed = options.speed;
         self.jump = options.jump;
+        self.icon = options.icon;
+        self.actions = options.actions;
         self.abilities = (typeof options.abilities == 'undefined') ?  {} : options.abilities;
         self.inventory = (typeof options.inventory == 'undefined') ? {} : options.inventory;
 
