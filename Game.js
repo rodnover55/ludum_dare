@@ -7,6 +7,10 @@ define(['baseMan', 'baseTool', 'ability', 'baseSubject', 'baseAction'], function
         for (optionName in options) {
             self[optionName] = self.parseOption(options, optionName);
         }
+        var toolName;
+        for (toolName in self.tools) {
+            self.parseCanList(self.tools[toolName].canList, self.mans);
+        }
 
 
 
@@ -27,6 +31,15 @@ define(['baseMan', 'baseTool', 'ability', 'baseSubject', 'baseAction'], function
             objects[i] = new parseObjList[optionName](optionsList[optionName][i]);
         }
         return objects;
+    }
+
+    Game.prototype.parseCanList = function(canList, mans) {
+        var i;
+        for (i in canList) {
+            if (canList[i] in mans) {
+                canList[i] = mans[canList[i]];
+            }
+        }
     }
 
     return Game;
