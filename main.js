@@ -1,6 +1,6 @@
 require.config({
     paths: {
-        "baseMan" : "BaseManActor",
+        "baseManActor" : "BaseManActor",
         "baseTool" : "BaseTool",
         "baseSubject" : "baseSubject",
         "abilities" : "Abilities",
