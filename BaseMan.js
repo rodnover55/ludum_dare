@@ -11,13 +11,18 @@ define(['baseManActor', 'ability', 'baseTool', 'baseAction', 'IconActor'],
         self.abilities = (typeof options.abilities == 'undefined') ?  {} : options.abilities;
         self.inventory = (typeof options.inventory == 'undefined') ? {} : options.inventory;
 
-        self.performAction = function(actionName, Environment) {
-            self.actions[actionName].performAction(Environment, options);
+        self.performAction = function(actionName, Subject, options) {
+            self.actions[actionName].performAction(self, Subject, options);
         }
 
         self.addTool = function(Tool) {
             var InvTool = Tool.clone();
             InvTool.addAbilities(self.abilities);
+            if (Tool.isManCanUse(self)) {
+                console.log(self.name, 'yeaaaah', Tool.canList);
+            } else {
+                console.log(self.name, 'nooooo', Tool.canList);
+            }
             if (InvTool.unique) {
                 self.inventory[InvTool.name] = InvTool;
             } else {
