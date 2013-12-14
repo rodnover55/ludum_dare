@@ -33,7 +33,6 @@ require(["scene", "caat", "game", "mainResourses", "Stage"], function(scene, CAA
     Stronger.addTool(Game.tools.slingshot);
     var Exp = Game.mans.experienced;
     Exp.addTool(Game.tools.slingshot);
-    console.log(Game);
     Stronger.performAction('crash', Game.subjects.tube, {
        callback: function(ActionCaller, Subject, options) {
            Subject.performEffect(ActionCaller);

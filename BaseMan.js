@@ -75,7 +75,6 @@ define(['baseManActor', 'ability', 'baseTool', 'baseAction', 'IconActor', 'Sprit
         var path = new CAAT.Behavior.PathBehavior().
                 setPath(opt.path).
                 setFrameTime(0, 5000).
-//                    setCycle(true).
             setAutoRotate(true, CAAT.Behavior.PathBehavior.autorotate.LEFT_TO_RIGHT);
 
         self.spriteActor.addBehavior(path);

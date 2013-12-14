@@ -22,7 +22,6 @@ define(['baseAction'], function(BaseAction){
     }
 
     BaseSubject.prototype.isManCanUse = function(man) {
-        console.log(man);
         for (index in this.canList) {
             if (this.canList[index] == man.name) {
                 return true;
@@ -38,7 +37,6 @@ define(['baseAction'], function(BaseAction){
         }
         var context = onCall[0];
         var action = onCall[1];
-        console.log(context, action);
         var $this = this;
         if (context == 'self') {
             return function(ActionCaller, Subject, options) {
@@ -56,7 +54,6 @@ define(['baseAction'], function(BaseAction){
     }
 
     BaseSubject.prototype.parseAction = function(action) {
-        console.log(new BaseAction(action));
         this.action = new BaseAction(action);
     }
 
