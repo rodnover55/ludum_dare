@@ -6,7 +6,8 @@ require.config({
         "baseSubject" : "BaseSubject",
         "ability" : "Ability",
         "baseAction" : "BaseAction",
-        "game" : "Game"
+        "game" : "Game",
+        "level" : "level"
     },
     shim: {
         'caat': {
@@ -15,7 +16,7 @@ require.config({
         }
     }
 });
-require(["scene", "caat", "game"], function(scene, CAAT, Game) {
+require(["scene", "caat", "game", "level"], function(scene, CAAT, Game) {
     scene.init(CAAT);
 
     var Game = new Game({
