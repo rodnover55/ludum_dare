@@ -39,11 +39,15 @@ define(['baseMan', 'baseTool', 'ability', 'baseSubject', 'baseAction'],
         }
     }
 
-    Game.prototype.register = function(scene, container) {
+    Game.prototype.register = function(obj_scene, container) {
+        var height = 10;
         for (key in this.mans) {
             man = this.mans[key];
-            scene.addChild(man.iconActor);
-//            container.addChild()
+            icon = man.iconActor;
+            icon.setLocation(10, height);
+            icon.setBackgroundImage('man-strong');
+            container.addChild(icon);
+            height += icon.height + 10;
         }
 
     }
