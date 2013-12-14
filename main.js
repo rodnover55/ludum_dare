@@ -18,7 +18,6 @@ require.config({
 });
 require(["scene", "caat", "game", "level"], function(scene, CAAT, Game) {
     scene.init(CAAT);
-
     var Game = new Game({
         mans: {
             'sweet' : {
