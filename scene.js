@@ -62,7 +62,9 @@ define(
                 var pathActor = game.currentStage.getPathActor(game.currentStage.path);
                 console.log(pathActor);
 
-                container.addChild(pathActor);
+                container.addChild(pathActor.setLocation(0,0));
+//                game.currentStage.path.fillStyle='#323232';
+//                game.currentStage.path.fill();
 
                 scene.addChild(container);
 
