@@ -10,11 +10,18 @@ define(
 
         CAAT.SpriteAction.prototype = {
             setBackgroundImage2: function(image, resize) {
-            var si = new CAAT.Foundation.SpriteImage().initialize(image, 1, 6).
-                addAnimation("move", [0, 1, 2, 3, 4, 5], 100);
+            var si = new CAAT.Foundation.SpriteImage().initialize(image, 4, 6).
+                addAnimation("stand", [12, 13, 14], 300).
+                addAnimation("move", [6, 7, 8, 9, 10, 11], 100);
                 CAAT.SpriteAction.superclass.setBackgroundImage.call(this, si, resize).setBackgroundImage(si);
 
                 return this;
+            },
+            register: function(container) {
+                this.setBackgroundImage2('man-strong-sprite');
+                this.setLocation(300, 300).playAnimation("stand");
+                container.addChild(this);
+
             }
         }
 

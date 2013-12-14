@@ -8,6 +8,16 @@ define(
             return this;
         };
 
+
+        CAAT.IconActor.prototype = {
+            register: function(container, opt) {
+                var self = this;
+                self.setLocation(10, opt.height);
+                self.setBackgroundImage('man-strong-icon');
+                container.addChild(self);
+                opt.height += self.height + 10;
+            }
+        }
 //        CAAT.IconActor.prototype = {
 //            paint: function(director, time) {
 //                var ctx= director.ctx;

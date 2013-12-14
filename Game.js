@@ -44,7 +44,7 @@ define(['baseMan', 'baseTool', 'ability', 'baseSubject', 'baseAction', 'Stage'],
         }
     }
 
-    Game.prototype.register = function(viewport, container, scene) {
+    Game.prototype.register = function(container, scene) {
         var height = 10;
 
 
@@ -53,7 +53,7 @@ define(['baseMan', 'baseTool', 'ability', 'baseSubject', 'baseAction', 'Stage'],
             var opt = new Object();
             opt.height = height;
             opt.path = this.currentStage().path;
-            height += man.register(viewport, container, scene, opt);
+            height += man.register(container, scene, opt);
             height = opt.height;
         }
 
