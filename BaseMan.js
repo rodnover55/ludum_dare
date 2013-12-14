@@ -10,8 +10,8 @@ define(['baseManActor', 'ability', 'baseTool'], function(baseManActor, Ability, 
         self.abilities = (typeof options.abilities == 'undefined') ?  {} : options.abilities;
         self.inventory = (typeof options.inventory == 'undefined') ? {} : options.inventory;
 
-        self.performJump = function() {
-
+        self.performAction = function(actionName, Environment) {
+            self.actions[actionName].performAction(Environment, options);
         }
 
         self.addTool = function(Tool) {
