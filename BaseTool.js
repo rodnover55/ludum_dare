@@ -1,9 +1,11 @@
-define([], function(){
+define(['ability'], function(Ability){
     var BaseTool = function(options) {
         var self = this;
-        self.abilities = options.abilities;
+        self.abilities = self.parseAbilities(options.abilities);
         self.name = options.name;
         self.unique = (typeof options.unique == 'undefined') ? false : options.unique;
+        self.canList = options.canList;
+        self.icon = options.icon;
         self.big = (typeof options.big == 'undefined') ? false : options.big;
 
         self.clone = function() {
@@ -37,6 +39,14 @@ define([], function(){
         }
 
 
+    }
+
+    BaseTool.prototype.parseAbilities = function(abilities) {
+        var i, list = {};
+        for(i in abilities) {
+            list[abilities[i].name] = new Ability(abilities[i]);
+        }
+        return list;
     }
 
     return BaseTool;
