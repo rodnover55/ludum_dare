@@ -4,6 +4,8 @@ define([], function(){
         self.abilities = options.abilities;
         self.name = options.name;
         self.unique = (typeof options.unique == 'undefined') ? false : options.unique;
+        self.canList = options.canList;
+        self.icon = options.icon;
         self.big = (typeof options.big == 'undefined') ? false : options.big;
 
         self.clone = function() {
