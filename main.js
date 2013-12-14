@@ -9,7 +9,8 @@ require.config({
         "game" : "Game",
         "tools" : "tools",
         "subjects" : "subjects",
-        "mans" : "mans"
+        "mans" : "mans",
+        "stage" : "Stage"
     },
     shim: {
         'caat': {
@@ -18,7 +19,15 @@ require.config({
         }
     }
 });
-require(["scene", "caat", "game", "mainResourses"], function(scene, CAAT, Game, mainResourses) {
+require(["scene", "caat", "game", "mainResourses", "Stage"], function(scene, CAAT, Game, mainResourses, Stage) {
+    mainResourses.stages = [
+        [
+            [0, 310],
+            [260, 350],
+            [560, 300],
+            [1560, 370]
+        ]
+    ];
     var Game = new Game(mainResourses);
     var Stronger = Game.mans.strong;
     Stronger.addTool(Game.tools.slingshot);
@@ -30,5 +39,6 @@ require(["scene", "caat", "game", "mainResourses"], function(scene, CAAT, Game, 
            Subject.performEffect(ActionCaller);
        }
     });
+
     scene.init(Game);
 });

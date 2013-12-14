@@ -1,9 +1,10 @@
-define(['baseMan', 'baseTool', 'ability', 'baseSubject', 'baseAction'],
-    function(BaseMan, BaseTool, Ability, BaseSubject, BaseAction) {
+define(['baseMan', 'baseTool', 'ability', 'baseSubject', 'baseAction', 'Stage'],
+    function(BaseMan, BaseTool, Ability, BaseSubject, BaseAction, Stage) {
 
     var Game = function(options) {
         var self = this;
         var optionName;
+        self.currentStageId = 1;
 
         for (optionName in options) {
             self[optionName] = self.parseOption(options, optionName);
@@ -14,13 +15,17 @@ define(['baseMan', 'baseTool', 'ability', 'baseSubject', 'baseAction'],
         }
     }
 
+    Game.prototype.currentStage = function() {
+        return this.stages[this.currentStageId - 1];
+    }
     Game.prototype.parseOption = function(optionsList, optionName) {
         var parseObjList = {
             mans: BaseMan,
             tools: BaseTool,
             abilities: Ability,
             subjects: BaseSubject,
-            actions: BaseAction
+            actions: BaseAction,
+            stages: Stage
         }
         var objects = {};
         var i;
@@ -39,15 +44,17 @@ define(['baseMan', 'baseTool', 'ability', 'baseSubject', 'baseAction'],
         }
     }
 
-    Game.prototype.register = function(obj_scene, container) {
+    Game.prototype.register = function(viewport, container, scene) {
         var height = 10;
+
+
         for (key in this.mans) {
-            man = this.mans[key];
-            icon = man.iconActor;
-            icon.setLocation(10, height);
-            icon.setBackgroundImage('man-strong');
-            container.addChild(icon);
-            height += icon.height + 10;
+            var man = this.mans[key];
+            var opt = new Object();
+            opt.height = height;
+            opt.path = this.currentStage().path;
+            height += man.register(viewport, container, scene, opt);
+            height = opt.height;
         }
 
     }
