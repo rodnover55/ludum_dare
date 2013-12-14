@@ -19,8 +19,8 @@ define(['ability'], function(Ability){
             );
         }
 
-        self.addAbilities = function(abilities) {
 
+        self.addAbilities = function(abilities) {
             for (var i=0; i < self.abilities.length; i++) {
                 var Ability = self.abilities[i];
                 if (! (Ability.name in abilities))
@@ -41,6 +41,14 @@ define(['ability'], function(Ability){
 
     }
 
+    BaseTool.prototype.isManCanUse = function(man) {
+        for (index in this.canList) {
+            if (this.canList[index].name == man.name) {
+                return true;
+            }
+        }
+        return false;
+    }
     BaseTool.prototype.parseAbilities = function(abilities) {
         var i, list = {};
         for(i in abilities) {
@@ -50,4 +58,4 @@ define(['ability'], function(Ability){
     }
 
     return BaseTool;
-})
+});
