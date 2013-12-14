@@ -5,7 +5,6 @@ define(
             CAAT.IconActor.superclass.constructor.call(this);
             this._baseMane = baseMan;
             this.setFrameTime(0, Number.MAX_VALUE);
-            this.tick = 0;
             return this;
         };
 

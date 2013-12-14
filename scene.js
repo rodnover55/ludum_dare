@@ -29,12 +29,12 @@ define(
 
                 var self = this;
 
-
                 self.director = new self.CAAT.Foundation.Director().initialize(IMAGES_WIDTH, IMAGES_HEIGHT,
                     document.getElementById('viewport'));
 
                 var backgroundImage = [{id: 'background', url: 'resources/stage1/background.png'},
-                    {id: 'man-strong', url: 'resources/men/strong.png'}];
+                    { id: 'man-strong-icon', url: 'resources/men/strong.png' },
+                    { id: 'man-strong-sprite', url: 'resources/men/run.png' }];
 
                 new self.CAAT.Module.Preloader.ImagePreloader().loadImages(
                     backgroundImage,
@@ -57,12 +57,13 @@ define(
                     setBounds(0, 0, IMAGES_WIDTH, IMAGES_HEIGHT);
 
                 container.addChild(new self.CAAT.Foundation.Actor().setBackgroundImage('background'));
+//                container.setLocation(100, 0);
                 // add a scene object to the director.
                 var scene = self.director.createScene();
 
                 scene.addChild(container);
 
-                game.register(self, container);
+                game.register(self, container, scene);
 
 //                director.enableResizeEvents(self.CAAT.Foundation.Director.RESIZE_BOTH, function(directory, width, height) {
 //                    var proportion = 1;

@@ -29,6 +29,18 @@ require(["scene", "caat", "game"], function(scene, CAAT, Game) {
                         sprite: 'jumpSprite'
                     }
                 }
+            },
+            'sweet2' : {
+                name: 'Sweet2',
+                speed: 1,
+                jump: 1,
+                icon: 'path/to/icon',
+                actions: {
+                    'jump' : {
+                        name: 'jump',
+                        sprite: 'jumpSprite'
+                    }
+                }
             }
         },
         tools: {
