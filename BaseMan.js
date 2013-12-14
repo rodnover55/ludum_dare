@@ -1,4 +1,4 @@
-define(['baseManActor', 'ability', 'baseTool'], function(baseManActor, Ability, BaseTool) {
+define(['baseManActor', 'ability', 'baseTool', 'baseAction'], function(baseManActor, Ability, BaseTool, BaseAction) {
 
     var BaseMan = function(options) {
         var self = this;
@@ -6,7 +6,7 @@ define(['baseManActor', 'ability', 'baseTool'], function(baseManActor, Ability, 
         self.speed = options.speed;
         self.jump = options.jump;
         self.icon = options.icon;
-        self.actions = options.actions;
+        self.actions = self.parseActions(options.actions);
         self.abilities = (typeof options.abilities == 'undefined') ?  {} : options.abilities;
         self.inventory = (typeof options.inventory == 'undefined') ? {} : options.inventory;
 
@@ -41,6 +41,15 @@ define(['baseManActor', 'ability', 'baseTool'], function(baseManActor, Ability, 
 
         }
 
+    }
+
+    BaseMan.prototype.parseActions = function(actions) {
+        var i;
+        var mansActions = {};
+        for (i in actions) {
+            mansActions[actions[i].name] = new BaseAction(actions[i]);
+        }
+        return mansActions;
     }
 
     return BaseMan;
