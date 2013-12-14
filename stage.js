@@ -6,9 +6,13 @@ define(['stage'],
             self.path = new CAAT.Path();
             switch (self.stage) {
                 case 1 :
-                    self.path.beginPath(0,300).
-                        addCubicTo( 0,0, 100,200, 100,300).
-                        addCubicTo( 50,80, 0,10, 100,50).
+                    self.path.beginPath(0,700).
+                        fillStyle='#323232'.
+                        addCubicTo( 0,550, 0,550, 0,550).
+                        addCubicTo( 50,500, 70,510, 160,510).
+                        addCubicTo( 210,500, 200,500, 260,550).
+                        addCubicTo( 120,700, 120,700, 120,700).
+                        addCubicTo( 0,700, 0,700, 0,700).
                         endPath();
                     break
             }
@@ -17,7 +21,7 @@ define(['stage'],
 
         Stage.prototype.getPathActor = function(path) {
             var pathActor = new CAAT.PathActor().
-                setBounds(100,0,600,668).
+            setBounds(0,0,1000,668).
                 create().
                 setPath(
                     path
