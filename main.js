@@ -1,4 +1,11 @@
 require.config({
+    paths: {
+        "baseMan" : "BaseManActor",
+        "baseTool" : "BaseTool",
+        "baseSubject" : "baseSubject",
+        "abilities" : "Abilities",
+        "game" : "Game"
+    },
     shim: {
         'caat': {
             deps: [],
@@ -6,6 +13,6 @@ require.config({
         }
     }
 });
-require(["scene", "caat"], function(scene, CAAT) {
+require(["scene", "caat", "baseMan"], function(scene, CAAT, baseMan) {
     scene.init(CAAT);
 });
