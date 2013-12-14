@@ -4,19 +4,30 @@
 define(
     function (CAAT) {
         return {
-            init: function(CAAT) {
+            init: function(CAAT, bm) {
                 var director = new CAAT.Foundation.Director().initialize(
-                    100, 100, document.getElementById('viewport')
-                )
+                    document.getElementById('viewport').offsetWidth,
+                    document.getElementById('viewport').offsetHeight, document.getElementById('viewport')
+                );
 
                 var scene = director.createScene();
-                var circle = new CAAT.Foundation.UI.ShapeActor().
-                    setLocation(20, 20).
-                    setSize(60, 60).
-                    setFillStyle('#ff0000').
-                    setStrokeStyle('#000000');
+                scene.activated= function() {
+                    director.setClear(false);
+                }
+                var NP=20;
+                var colors= ['red', 'blue', 'white', 'rgb(0,255,255)', 'yellow'];
+                var gradient= director.ctx.createLinearGradient(0, 0, director.width, director.height);
+                gradient.addColorStop(0, '#000000');
+                gradient.addColorStop(1, '#00007f');
+//
+                var gr = new CAAT.ActorContainer().
+                    setBounds(0,0,director.width,director.height).
+                    setFillStyle(gradient).
+                    enableEvents(false).
+                    cacheAsBitmap();
 
-                scene.addChild(circle);
+                scene.addChild(gr);
+//                scene.addChild(bm);
 
                 CAAT.loop(1);
 //                CAAT.modules.initialization.init(

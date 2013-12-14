@@ -1,6 +1,6 @@
 require.config({
     paths: {
-        "baseManActor" : "BaseManActor",
+        "BaseManActor" : "BaseManActor",
         "baseTool" : "BaseTool",
         "baseSubject" : "baseSubject",
         "abilities" : "Abilities",
@@ -13,6 +13,8 @@ require.config({
         }
     }
 });
-require(["scene", "caat", "baseMan"], function(scene, CAAT, baseMan) {
-    scene.init(CAAT);
+require(["scene", "caat", "BaseManActor"], function(scene, CAAT, BaseManActor) {
+    // TODO: Create game
+    bm = new BaseManActor(null);
+    scene.init(CAAT, bm);
 });
