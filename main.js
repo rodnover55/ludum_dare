@@ -16,8 +16,6 @@ require.config({
     }
 });
 require(["scene", "caat", "game"], function(scene, CAAT, Game) {
-    scene.init(CAAT);
-
     var Game = new Game({
         mans: {
             'sweet' : {
@@ -52,4 +50,6 @@ require(["scene", "caat", "game"], function(scene, CAAT, Game) {
         actions: {}
 
     });
+
+    scene.init(Game);
 });
