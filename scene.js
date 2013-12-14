@@ -2,8 +2,6 @@
  * Created by rodnover on 14.12.13.
  */
 define(
-    'scene',
-    ['caat'],
     function (CAAT) {
         return {
             init: function(CAAT) {
