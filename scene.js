@@ -7,7 +7,20 @@ define(
     function (CAAT) {
         return {
             init: function(CAAT) {
-//                var director = new CAAT.Foundation
+                var director = new CAAT.Foundation.Director().initialize(
+                    100, 100, document.getElementById('viewport')
+                )
+
+                var scene = director.createScene();
+                var circle = new CAAT.Foundation.UI.ShapeActor().
+                    setLocation(20, 20).
+                    setSize(60, 60).
+                    setFillStyle('#ff0000').
+                    setStrokeStyle('#000000');
+
+                scene.addChild(circle);
+
+                CAAT.loop(1);
 //                CAAT.modules.initialization.init(
 //                    800, 500,
 //                    'viewport',
