@@ -1,0 +1,2 @@
+require(["caat"], function(caat) {
+});
