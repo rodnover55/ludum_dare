@@ -7,7 +7,7 @@ require.config({
         "ability" : "Ability",
         "baseAction" : "BaseAction",
         "game" : "Game",
-        "level" : "level"
+        "stage" : "Stage"
     },
     shim: {
         'caat': {
@@ -16,8 +16,7 @@ require.config({
         }
     }
 });
-require(["scene", "caat", "game", "level"], function(scene, CAAT, Game) {
-    scene.init(CAAT);
+require(["scene", "caat", "game", "stage"], function(scene, CAAT, Game, Stage) {
     var Game = new Game({
         mans: {
             'sweet' : {
@@ -49,7 +48,11 @@ require(["scene", "caat", "game", "level"], function(scene, CAAT, Game) {
         },
         abilities: {},
         subjects: {},
-        actions: {}
+        actions: {},
+        stage: 1
 
     });
+
+    scene.init(Game);
+
 });

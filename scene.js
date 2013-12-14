@@ -4,38 +4,45 @@
 define(
     function (CAAT) {
         return {
-            init: function(CAAT, bm) {
+            CAAT: CAAT,
+            init: function(game) {
                 // create a director object
                 const IMAGES_WIDTH = 1000;
                 const IMAGES_HEIGHT = 669;
 
-                var director = new CAAT.Foundation.Director().initialize(IMAGES_WIDTH, IMAGES_HEIGHT, document.getElementById('viewport'));
+                var director = new self.CAAT.Foundation.Director().initialize(IMAGES_WIDTH, IMAGES_HEIGHT,
+                    document.getElementById('viewport'));
 
                 // add a scene object to the director.
                 var scene = director.createScene();
-                var actors = [];
-                var idActors = 0;
                 var backgroundImage = {id: 'background', url:'resources/stage1/background.png'};
 
 
-                var container = new CAAT.Foundation.ActorContainer().
+                var container = new self.CAAT.Foundation.ActorContainer().
                     setBounds(0, 0, IMAGES_WIDTH, IMAGES_HEIGHT);
+
+                var pathActor = game.currentStage.getPathActor(game.currentStage.path);
+                console.log(pathActor);
+
+                scene.addChild(pathActor);
 
                 scene.addChild(container);
 
-                new CAAT.Module.Preloader.ImagePreloader().loadImages(
+                game.register(scene);
+
+                new self.CAAT.Module.Preloader.ImagePreloader().loadImages(
                     [backgroundImage],
-                    function (counter, images) {idActors
+                    function (counter, images) {
                         director.setImagesCache(images);
-                        container.addChild(new CAAT.Foundation.Actor().setBackgroundImage('background'), true);
+                        container.addChild(new self.CAAT.Foundation.Actor().setBackgroundImage('background'), true);
                     }
                 );
-                director.enableResizeEvents(CAAT.Foundation.Director.RESIZE_BOTH, function(directory, width, height) {
+                director.enableResizeEvents(self.CAAT.Foundation.Director.RESIZE_BOTH, function(directory, width, height) {
                     var proportion = 1;
                     if ((director.height > IMAGES_HEIGHT) || (director.width > IMAGES_WIDTH)) {
                         proportion = Math.max((director.height / IMAGES_HEIGHT), (director.width / IMAGES_WIDTH));
                         container.addBehavior(
-                            new CAAT.Behavior.ScaleBehavior().
+                            new self.CAAT.Behavior.ScaleBehavior().
                                 setValues(1, proportion, 1, proportion, 0, 0).
                                 setFrameTime(0, 0)
                         );
@@ -45,25 +52,12 @@ define(
                     }
                 });
                 // start the animation loop
-                CAAT.loop(5);
+                self.CAAT.loop(5);
             },
 
             __scene: function(director) {
-//                var NP=20;
-//                var colors= ['red', 'blue', 'white', 'rgb(0,255,255)', 'yellow'];
-//                var gradient= director.ctx.createLinearGradient(0, 0, director.width, director.height);
-//                gradient.addColorStop(0, '#000000');
-//                gradient.addColorStop(1, '#00007f');
-
-
-
-
-
-
-
             },
             gameStart : function(director){
-//                alert('test');
             }
         };
     });

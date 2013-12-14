@@ -1,4 +1,5 @@
-define(['baseManActor', 'ability', 'baseTool', 'baseAction'], function(baseManActor, Ability, BaseTool, BaseAction) {
+define(['baseManActor', 'ability', 'baseTool', 'baseAction', 'IconActor'],
+    function(baseManActor, Ability, BaseTool, BaseAction, IconActor) {
 
     var BaseMan = function(options) {
         var self = this;
@@ -41,6 +42,7 @@ define(['baseManActor', 'ability', 'baseTool', 'baseAction'], function(baseManAc
 
         }
 
+        self.iconActor = new IconActor(this);
     }
 
     BaseMan.prototype.parseActions = function(actions) {

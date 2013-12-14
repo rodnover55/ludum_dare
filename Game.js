@@ -1,8 +1,10 @@
-define(['baseMan', 'baseTool', 'ability', 'baseSubject', 'baseAction'], function(BaseMan, BaseTool, Ability, BaseSubject, BaseAction) {
+define(['baseMan', 'baseTool', 'ability', 'baseSubject', 'baseAction', 'stage'],
+    function(BaseMan, BaseTool, Ability, BaseSubject, BaseAction, Stage) {
 
     var Game = function(options) {
         var self = this;
         var optionName;
+        self.currentStage = new Stage(1);
 
         for (optionName in options) {
             self[optionName] = self.parseOption(options, optionName);
@@ -11,10 +13,6 @@ define(['baseMan', 'baseTool', 'ability', 'baseSubject', 'baseAction'], function
         for (toolName in self.tools) {
             self.parseCanList(self.tools[toolName].canList, self.mans);
         }
-
-
-
-
     }
 
     Game.prototype.parseOption = function(optionsList, optionName) {
@@ -40,6 +38,15 @@ define(['baseMan', 'baseTool', 'ability', 'baseSubject', 'baseAction'], function
                 canList[i] = mans[canList[i]];
             }
         }
+    }
+
+    Game.prototype.register = function(scene, container) {
+        for (key in this.mans) {
+            man = this.mans[key];
+            scene.addChild(man.iconActor);
+//            container.addChild()
+        }
+
     }
 
     return Game;
