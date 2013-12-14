@@ -1,4 +1,4 @@
-define(['baseMan', 'baseTool', 'ability', 'baseSubject', 'baseAction', 'stage'],
+define(['baseMan', 'baseTool', 'ability', 'baseSubject', 'baseAction', 'Stage'],
     function(BaseMan, BaseTool, Ability, BaseSubject, BaseAction, Stage) {
 
     var Game = function(options) {

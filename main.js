@@ -16,7 +16,7 @@ require.config({
         }
     }
 });
-require(["scene", "caat", "game", "stage"], function(scene, CAAT, Game, Stage) {
+require(["scene", "caat", "game", "Stage"], function(scene, CAAT, Game, Stage) {
     var Game = new Game({
         mans: {
             'sweet' : {
