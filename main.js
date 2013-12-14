@@ -5,6 +5,7 @@ require.config({
         "baseTool" : "BaseTool",
         "baseSubject" : "BaseSubject",
         "ability" : "Ability",
+        "baseAction" : "BaseAction",
         "game" : "Game"
     },
     shim: {
@@ -14,14 +15,41 @@ require.config({
         }
     }
 });
-require(["scene", "caat", "baseMan", "baseTool", "ability"], function(scene, CAAT, BaseMan, BaseTool, Ability) {
+require(["scene", "caat", "game"], function(scene, CAAT, Game) {
     scene.init(CAAT);
-    var man = new BaseMan({name: 'Dwarf', speed: 1, jump: 1});
-    var tool = new BaseTool({name: 'axe', abilities : [new Ability({name: 'blood', action: function() {}}),
-        new Ability({name: 'death', action: function() {}})]});
-    man.addTool(tool);
-    man.addTool(tool);
-    console.log(man.inventory);
-    man.removeTool(tool);
 
+    var Game = new Game({
+        mans: {
+            'sweet' : {
+                name: 'Sweet',
+                speed: 1,
+                jump: 1,
+                icon: 'path/to/icon',
+                actions: {
+                    'jump' : {
+                        name: 'jump',
+                        sprite: 'jumpSprite'
+                    }
+                }
+            }
+        },
+        tools: {
+            'axe' : {
+                name: 'Axe',
+                canList: ['sweet'],
+                icon: 'axe_icon',
+                abilities: {
+                    'blood' : {
+                        name: 'blood',
+                        action: 'kick'
+                    }
+
+                }
+            }
+        },
+        abilities: {},
+        subjects: {},
+        actions: {}
+
+    });
 });
