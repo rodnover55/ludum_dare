@@ -59,12 +59,14 @@ define(
                 // add a scene object to the director.
                 var scene = self.director.createScene();
 
-                var pathActor = game.currentStage.getPathActor(game.currentStage.path);
-                console.log(pathActor);
+//                var pathActor = ;
 
-                container.addChild(pathActor.setLocation(0,0));
-//                game.currentStage.path.fillStyle='#323232';
-//                game.currentStage.path.fill();
+                container.addChild(new CAAT.Foundation.UI.PathActor().
+                    setLocation(0, 0, IMAGES_WIDTH, IMAGES_HEIGHT).
+                    create().
+                    setPath(game.currentStage().path).
+                    setPath(self.path).
+                    setInteractive(false));
 
                 scene.addChild(container);
 

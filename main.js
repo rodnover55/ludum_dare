@@ -49,8 +49,14 @@ require(["scene", "caat", "game", "Stage"], function(scene, CAAT, Game, Stage) {
         abilities: {},
         subjects: {},
         actions: {},
-        stage: 1
-
+        stages: [
+            [
+            [0, 310],
+            [260, 350],
+            [560, 300],
+            [1560, 370]
+            ]
+        ]
     });
 
     scene.init(Game);

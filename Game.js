@@ -4,7 +4,7 @@ define(['baseMan', 'baseTool', 'ability', 'baseSubject', 'baseAction', 'Stage'],
     var Game = function(options) {
         var self = this;
         var optionName;
-        self.currentStage = new Stage(1);
+        self.currentStageId = 1;
 
         for (optionName in options) {
             self[optionName] = self.parseOption(options, optionName);
@@ -15,13 +15,17 @@ define(['baseMan', 'baseTool', 'ability', 'baseSubject', 'baseAction', 'Stage'],
         }
     }
 
+    Game.prototype.currentStage = function() {
+        return this.stages[this.currentStageId - 1];
+    }
     Game.prototype.parseOption = function(optionsList, optionName) {
         var parseObjList = {
             mans: BaseMan,
             tools: BaseTool,
             abilities: Ability,
             subjects: BaseSubject,
-            actions: BaseAction
+            actions: BaseAction,
+            stages: Stage
         }
         var objects = {};
         var i;
@@ -42,10 +46,13 @@ define(['baseMan', 'baseTool', 'ability', 'baseSubject', 'baseAction', 'Stage'],
 
     Game.prototype.register = function(viewport, container, scene) {
         var height = 10;
+
+
         for (key in this.mans) {
             var man = this.mans[key];
             var opt = new Object();
             opt.height = height;
+            opt.path = this.currentStage().path;
             height += man.register(viewport, container, scene, opt);
             height = opt.height;
         }
