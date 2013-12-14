@@ -17,7 +17,7 @@ define(['stage'],
 
         Stage.prototype.getPathActor = function(path) {
             var pathActor = new CAAT.PathActor().
-                //            setBounds(100,0,600,director.height).
+                setBounds(100,0,600,668).
                 create().
                 setPath(
                     path
