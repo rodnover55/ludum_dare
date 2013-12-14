@@ -13,4 +13,6 @@ define(function() {
         }
 
     }
+
+    return BaseAction;
 })
