@@ -1,4 +1,4 @@
-define(['stage'],
+define(['Stage'],
     function(stage) {
         var Stage = function(options) {
             var self = this;

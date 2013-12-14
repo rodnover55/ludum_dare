@@ -1,4 +1,4 @@
-define(['baseMan', 'baseTool', 'ability', 'baseSubject', 'baseAction', 'stage'],
+define(['baseMan', 'baseTool', 'ability', 'baseSubject', 'baseAction', 'Stage'],
     function(BaseMan, BaseTool, Ability, BaseSubject, BaseAction, Stage) {
 
     var Game = function(options) {
@@ -40,15 +40,14 @@ define(['baseMan', 'baseTool', 'ability', 'baseSubject', 'baseAction', 'stage'],
         }
     }
 
-    Game.prototype.register = function(obj_scene, container) {
+    Game.prototype.register = function(viewport, container, scene) {
         var height = 10;
         for (key in this.mans) {
-            man = this.mans[key];
-            icon = man.iconActor;
-            icon.setLocation(10, height);
-            icon.setBackgroundImage('man-strong');
-            container.addChild(icon);
-            height += icon.height + 10;
+            var man = this.mans[key];
+            var opt = new Object();
+            opt.height = height;
+            height += man.register(viewport, container, scene, opt);
+            height = opt.height;
         }
 
     }
