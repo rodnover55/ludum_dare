@@ -66,6 +66,16 @@ define(['baseManActor', 'ability', 'baseTool', 'baseAction', 'IconActor', 'Sprit
         self.spriteActor.setBackgroundImage2('man-strong-sprite').playAnimation("move");
 
         container.addChild(self.spriteActor);
+
+        var path = new CAAT.Behavior.PathBehavior().
+                setPath(opt.path).
+                setFrameTime(0, 5000).
+//                    setCycle(true).
+            setAutoRotate(true, CAAT.Behavior.PathBehavior.autorotate.LEFT_TO_RIGHT);
+
+        self.spriteActor.addBehavior(path);
+
+
         opt.height += self.iconActor.height + 10;
     }
 
