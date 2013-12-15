@@ -47,7 +47,7 @@ define(
                     { id: 'subject-crashed-garbage', url: 'resources/subjects/crashed-garbage.png' },
 
                     { id: 'subject-space-ship', url: 'resources/subjects/space-ship.png' },
-
+                    { id: 'subject-space-ship-broken-window', url: 'resources/subjects/space-ship-broken-window.png' }
                 ];
 
                 new self.CAAT.Module.Preloader.ImagePreloader().loadImages(
