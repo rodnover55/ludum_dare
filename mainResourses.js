@@ -25,6 +25,11 @@ define(['mans', 'tools', 'subjects'], function (mans, tools, subjects) {
                     icon: "",
                     className: "GetComputerAbility"
                 },
+                showMap : {
+                    name: "showMap",
+                    icon: "",
+                    className: "ShowMapAbility"
+                },
                 computerMinigame: {
                     name: 'computerMinigame',
                     icon: "",
