@@ -19,6 +19,16 @@ define(['mans', 'tools', 'subjects'], function (mans, tools, subjects) {
                     name: "slingshooting",
                     icon: "",
                     className: "SlingShotAbility"
+                },
+                getComputer: {
+                    name: "getComputer",
+                    icon: "",
+                    className: "GetComputerAbility"
+                },
+                computerMinigame: {
+                    name: 'computerMinigame',
+                    icon: "",
+                    className: "computerMinigame"
                 }
         },
         stages: [
