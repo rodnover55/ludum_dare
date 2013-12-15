@@ -1,4 +1,4 @@
-define(['SlingShotTool'], function (SlingShotTool) {
+define(['SlingShotTool', 'ComputerTool'], function (SlingShotTool, ComputerTool) {
     return {
         slingshot : {
             name: 'slingshot',
@@ -12,6 +12,17 @@ define(['SlingShotTool'], function (SlingShotTool) {
             respawn: [50, 450],
             point: [70, 450],
             callbacks: SlingShotTool.callbacks
+        },
+        computer: {
+            name: 'computer',
+            icon: 'computerIcon',
+            canList: ['getComputer'],
+            abilities: ['computerMinigame'],
+            action: {
+                name: 'game',
+                sprite: 'blabla'
+            },
+            callbacks: ComputerTool.callbacks
         }
     };
 });

@@ -67,7 +67,7 @@ define(function () {
                     time: 100
                 }
             },
-            abilities: [],
+            abilities: ['getComputer'],
             actionFile: 'man-sweet-sprite',
             actionSize: [4, 8]
         }
