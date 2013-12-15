@@ -13,6 +13,8 @@ define(
                 self.setLocation(self.subject.respawn[0], self.subject.respawn[1]);
                 self.setBackgroundImage(this.subject.icon, true);
                 container.addChild(self);
+                container.setZOrder(self, 5);
+
             },
             mouseClick: function(mouseEvent) {
                 // TODO: Если не в точке - прийти в неё

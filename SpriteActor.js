@@ -44,14 +44,14 @@ define(
 
                 if (this.x > x) {
                     var cb = new CAAT.ScaleBehavior().
-                        setFrameTime( 0, 500 ).
-                        setValues(-1, -1, 1, 1, 0, 0);
+                        setFrameTime(0, 500).
+                        setValues(-1, -1, 1, 1, 0.6, 0);
                     this.addBehavior(cb);
                 }
 
                 var pb = new CAAT.PathBehavior().
-                    setPath(path).
-                    setFrameTime(0, 2000);
+                    setFrameTime(200, 2000).
+                    setPath(path);
 
                 pb.addListener({behaviorExpired: function(behavior, time, actor){
                     {self.playAnimation("stand")}

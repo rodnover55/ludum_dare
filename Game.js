@@ -76,6 +76,11 @@ define(['baseMan', 'baseTool', 'ability', 'BaseSubject', 'baseAction', 'Stage', 
     Game.prototype.register = function(container, scene) {
         var height = 10;
 
+        for (key in this.subjects) {
+            var subject = this.subjects[key];
+            subject.register(container);
+        }
+
         for (var key in this.mans) {
             var man = this.mans[key];
             var opt = new Object();
@@ -85,10 +90,6 @@ define(['baseMan', 'baseTool', 'ability', 'BaseSubject', 'baseAction', 'Stage', 
             height = opt.height;
         }
 
-        for (key in this.subjects) {
-            var subject = this.subjects[key];
-            subject.register(container);
-        }
 
     }
 

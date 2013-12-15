@@ -20,6 +20,7 @@ define(['baseManActor', 'ability', 'baseTool', 'baseAction'],
         self.abilities = [];
         if ((typeof options.abilities != 'undefined') && (options.abilities.length > 0)) {
             for (var key in options.abilities) {
+                this.game.abilities[key].setOwner(self);
                 self.abilities.push(this.game.abilities[key]);
             }
         }
