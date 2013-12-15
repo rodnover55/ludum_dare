@@ -19,6 +19,7 @@ define(
             mouseClick: function(mouseEvent) {
                 // TODO: Если не в точке - прийти в неё
 
+                console.log('lal ' + this.subject.isManCanUse());
                 if (!this.subject.isManCanUse()) {
                     return
                 }
