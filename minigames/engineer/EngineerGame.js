@@ -7,7 +7,10 @@ define(
 
         var EngineerGame = function(options) {
             var self = this;
-            self.setNum = options;
+            self.setNum = options.NUM;
+            self.successCallback = options.successCallback;
+            console.log(self);
+            self.failCallback = options.failCallback;
             self.setupImageSet();
             self.status = 'not started';
         }
@@ -17,15 +20,15 @@ define(
             switch (0) {
                 case (0) :
                     self.images = [
-                       {id:'sprite0',     url:'img/g1/1.png'},
-                       {id:'sprite1',     url:'img/g1/2.png'},
-                       {id:'sprite2',     url:'img/g1/3.png'},
-                       {id:'sprite3',     url:'img/g1/4.png'},
-                       {id:'sprite4',     url:'img/g1/5.png'},
-                       {id:'sprite5',     url:'img/g1/6.png'},
-                       {id:'sprite6',     url:'img/g1/7.png'},
-                       {id:'sprite7',     url:'img/g1/8.png'},
-                       {id:'sprite8',     url:'img/g1/9.png'}
+                       {id:'sprite0',     url:'minigames/engineer/img/g1/1.png'},
+                       {id:'sprite1',     url:'minigames/engineer/img/g1/2.png'},
+                       {id:'sprite2',     url:'minigames/engineer/img/g1/3.png'},
+                       {id:'sprite3',     url:'minigames/engineer/img/g1/4.png'},
+                       {id:'sprite4',     url:'minigames/engineer/img/g1/5.png'},
+                       {id:'sprite5',     url:'minigames/engineer/img/g1/6.png'},
+                       {id:'sprite6',     url:'minigames/engineer/img/g1/7.png'},
+                       {id:'sprite7',     url:'minigames/engineer/img/g1/8.png'},
+                       {id:'sprite8',     url:'minigames/engineer/img/g1/9.png'}
                     ];
                     self.greedSize = 3;
                     self.roundTime = 10;
@@ -92,6 +95,7 @@ define(
                         message.setText('You Loose').centerOn(110, 260);
                         scene.addChild(message);
                         console.log('You Loose');
+                        self.failCallback();
                         return EngineerGame;
                     }
                 }
@@ -160,6 +164,7 @@ define(
             scene.removeChild(text);
             scene.addChild(message);
             self.state = 'win';
+            self.successCallback();
         }
 
         return EngineerGame;

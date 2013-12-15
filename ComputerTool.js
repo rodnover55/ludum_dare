@@ -3,6 +3,16 @@ define(['minigames/engineer/EngineerGame', 'caat'], function(EngineerGame, CAAT)
         callbacks: {
             success: function(self, caller) {
                 caller.man.addTool(self);
+                caller.man.activeAbility = self.game.abilities.computerMinigame;
+                self.game.scene.startMiniGame({
+                    NUM: 0,
+                    successCallback: function() {
+                        console.log('dsgdsgs');
+                    },
+                    failCallback: function() {
+                        console.log('fgfdgdg');
+                    }
+                });
                 caller.doAction();
                 caller.man.activeAbility = self.game.abilities.computerMinigame;
                 self.game.abilities.computerMinigame.doAction();
