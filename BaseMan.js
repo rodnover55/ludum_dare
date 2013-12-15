@@ -37,7 +37,7 @@ define(['baseManActor', 'ability', 'baseTool', 'baseAction'],
         self.addTool = function(Tool) {
             var InvTool = Tool.clone();
             InvTool.addAbilities(self.abilities);
-            if (Tool.isManCanUse(self)) {
+            if (Tool.isManCanUseAbility(self)) {
                 console.log(self.name, 'yeaaaah', Tool.canList);
             } else {
                 console.log(self.name, 'nooooo', Tool.canList);
