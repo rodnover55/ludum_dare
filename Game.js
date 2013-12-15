@@ -23,10 +23,10 @@ define(['baseMan', 'baseTool', 'ability', 'BaseSubject', 'baseAction', 'Stage', 
     }
 
     Game.prototype.get_abilities = function(options) {
-        var abilities = [];
+        var abilities = {};
 
         for (var key in options) {
-            abilities.push(new BaseAbility(options[key], this));
+            abilities[key] = new BaseAbility(options[key], this);
         }
 
         return abilities;

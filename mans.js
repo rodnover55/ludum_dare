@@ -42,6 +42,7 @@ define(function () {
                 }
 
             },
+            abilities: ['getSlingShot'],
             inventory: {
             },
             icon: 'man-experienced-icon',
@@ -66,6 +67,7 @@ define(function () {
                     time: 100
                 }
             },
+            abilities: [],
             actionFile: 'man-sweet-sprite',
             actionSize: [4, 8]
         }

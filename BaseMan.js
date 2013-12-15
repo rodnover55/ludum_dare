@@ -22,8 +22,8 @@ define(['baseManActor', 'ability', 'baseTool', 'baseAction'],
         self.abilities = [];
         if ((typeof options.abilities != 'undefined') && (options.abilities.length > 0)) {
             for (var key in options.abilities) {
-                this.game.abilities[key].setOwner(self);
-                self.abilities.push(this.game.abilities[key]);
+                this.game.abilities[options.abilities[key]].setOwner(self);
+                self.abilities.push(this.game.abilities[options.abilities[key]]);
             }
         }
 
@@ -36,8 +36,8 @@ define(['baseManActor', 'ability', 'baseTool', 'baseAction'],
 
         self.addTool = function(Tool) {
             var InvTool = Tool.clone();
-            InvTool.addAbilities(self.abilities);
-            if (Tool.isManCanUse(self)) {
+            InvTool.addAbilities(self);
+            if (Tool.isManCanUseAbility(self)) {
                 console.log(self.name, 'yeaaaah', Tool.canList);
             } else {
                 console.log(self.name, 'nooooo', Tool.canList);
