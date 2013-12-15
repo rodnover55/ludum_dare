@@ -7,6 +7,9 @@ require.config({
         "ability" : "Ability",
         "baseAction" : "BaseAction",
         "game" : "Game",
+        "tools" : "tools",
+        "subjects" : "subjects",
+        "mans" : "mans",
         "stage" : "Stage"
     },
     shim: {
@@ -16,43 +19,17 @@ require.config({
         }
     }
 });
-require(["scene", "caat", "game", "Stage"], function(scene, CAAT, Game, Stage) {
-    var Game = new Game({
-        mans: {
-            'sweet' : {
-                name: 'Sweet',
-                speed: 1,
-                jump: 1,
-                icon: 'path/to/icon',
-                actions: {
-                    'jump' : {
-                        name: 'jump',
-                        sprite: 'jumpSprite'
-                    }
-                }
-            }
-        },
-        tools: {
-            'axe' : {
-                name: 'Axe',
-                canList: ['sweet'],
-                icon: 'axe_icon',
-                abilities: {
-                    'blood' : {
-                        name: 'blood',
-                        action: 'kick'
-                    }
-
-                }
-            }
-        },
-        abilities: {},
-        subjects: {},
-        actions: {},
-        stage: 1
-
-    });
+require(["scene", "caat", "game", "mainResourses", "Stage"], function(scene, CAAT, Game, mainResourses, Stage) {
+    var Game = new Game(mainResourses);
+//    var Stronger = Game.mans.strong;
+//    Stronger.addTool(Game.tools.slingshot);
+//    var Exp = Game.mans.experienced;
+//    Exp.addTool(Game.tools.slingshot);
+//    Stronger.performAction('crash', Game.subjects.tube, {
+//       callback: function(ActionCaller, Subject, options) {
+//           Subject.performEffect(ActionCaller);
+//       }
+//    });
 
     scene.init(Game);
-
 });

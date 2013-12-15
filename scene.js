@@ -33,7 +33,16 @@ define(
 
                 var backgroundImage = [{id: 'background', url: 'resources/stage1/background.png'},
                     { id: 'man-strong-icon', url: 'resources/men/strong.png' },
-                    { id: 'man-strong-sprite', url: 'resources/men/run.png' }];
+                    { id: 'man-strong-sprite', url: 'resources/men/strong-actions.png' },
+
+                    { id: 'man-experienced-icon', url: 'resources/men/experienced.png' },
+                    { id: 'man-experienced-sprite', url: 'resources/men/experienced-actions.png' },
+
+
+                    { id: 'man-sweet-icon', url: 'resources/men/sweet.png' },
+                    { id: 'man-sweet-sprite', url: 'resources/men/sweet-actions.png' },
+
+                    { id: 'subject-garbage', url: 'resources/subjects/garbage.png' }];
 
                 new self.CAAT.Module.Preloader.ImagePreloader().loadImages(
                     backgroundImage,
@@ -59,17 +68,9 @@ define(
                 // add a scene object to the director.
                 var scene = self.director.createScene();
 
-                var pathActor = game.currentStage.getPathActor(game.currentStage.path);
-                console.log(pathActor);
-
-                container.addChild(pathActor.setLocation(0,0));
-//                game.currentStage.path.fillStyle='#323232';
-//                game.currentStage.path.fill();
-
                 scene.addChild(container);
 
-
-                game.register(self, container, scene);
+                game.register(container, scene);
 
 //                director.enableResizeEvents(self.CAAT.Foundation.Director.RESIZE_BOTH, function(directory, width, height) {
 //                    var proportion = 1;

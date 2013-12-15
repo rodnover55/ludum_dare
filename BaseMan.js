@@ -1,23 +1,47 @@
-define(['baseManActor', 'ability', 'baseTool', 'baseAction', 'IconActor', 'SpriteActor'],
-    function(baseManActor, Ability, BaseTool, BaseAction, IconActor, SpriteActor) {
+define(['baseManActor', 'ability', 'baseTool', 'baseAction'],
+    function(BaseManActor, Ability, BaseTool, BaseAction) {
 
-    var BaseMan = function(options) {
+    var BaseMan = function(options, game) {
         var self = this;
+
+        self.game = game;
+
+        if (self.game.currentCharacter == null) {
+            self.activate();
+        }
         self.name = options.name;
         self.speed = options.speed;
         self.jump = options.jump;
         self.icon = options.icon;
         self.actions = self.parseActions(options.actions);
-        self.abilities = (typeof options.abilities == 'undefined') ?  {} : options.abilities;
-        self.inventory = (typeof options.inventory == 'undefined') ? {} : options.inventory;
+        self.actionSize = options.actionSize;
+        self.actionFile = options.actionFile;
 
-        self.performAction = function(actionName, Environment) {
-            self.actions[actionName].performAction(Environment, options);
+        self.respawn = options.respawn;
+
+        self.abilities = [];
+        if ((typeof options.abilities != 'undefined') && (options.abilities.length > 0)) {
+            for (var key in options.abilities) {
+                this.game.abilities[options.abilities[key]].setOwner(self);
+                self.abilities.push(this.game.abilities[options.abilities[key]]);
+            }
+        }
+
+        self.inventory = (typeof options.inventory == 'undefined') ? [] : options.inventory;
+        self.activeAbility = (self.abilities.length > 0) ? (self.abilities[0]) : (null);
+
+        self.performAction = function(actionName, Subject, options) {
+            self.actions[actionName].performAction(self, Subject, options);
         }
 
         self.addTool = function(Tool) {
             var InvTool = Tool.clone();
-            InvTool.addAbilities(self.abilities);
+            InvTool.addAbilities(self);
+            if (Tool.isManCanUseAbility(self)) {
+                console.log(self.name, 'yeaaaah', Tool.canList);
+            } else {
+                console.log(self.name, 'nooooo', Tool.canList);
+            }
             if (InvTool.unique) {
                 self.inventory[InvTool.name] = InvTool;
             } else {
@@ -42,31 +66,48 @@ define(['baseManActor', 'ability', 'baseTool', 'baseAction', 'IconActor', 'Sprit
 
         }
 
-        self.iconActor = new IconActor(this);
-        self.spriteActor = new SpriteActor(this);
+        self.actor = new BaseManActor(this);
     }
 
     BaseMan.prototype.parseActions = function(actions) {
-        var i;
+        var key;
         var mansActions = {};
-        for (i in actions) {
-            mansActions[actions[i].name] = new BaseAction(actions[i]);
+        for (key in actions) {
+            mansActions[key] = new BaseAction(key, actions[key]);
         }
         return mansActions;
     }
 
-    BaseMan.prototype.register = function(viewport, container, scene, opt) {
+    BaseMan.prototype.register = function(container, scene, opt) {
         var self = this;
-        self.iconActor.setLocation(10, opt.height);
-        self.iconActor.setBackgroundImage('man-strong-icon');
-        scene.addChild(self.iconActor);
 
-        self.spriteActor.setLocation(300, 300);
+        self.actor.register(scene, container, opt)
 
-        self.spriteActor.setBackgroundImage2('man-strong-sprite').playAnimation("move");
+//        self.spriteActor.playAnimation("move")
+//        container.addChild(self.spriteActor);
 
-        container.addChild(self.spriteActor);
-        opt.height += self.iconActor.height + 10;
+//        var path = new CAAT.Behavior.PathBehavior().
+//                setPath(opt.path).
+//                setFrameTime(0, 5000).
+//            setAutoRotate(true, CAAT.Behavior.PathBehavior.autorotate.LEFT_TO_RIGHT);
+//
+//        self.spriteActor.addBehavior(path);
+    }
+
+    BaseMan.prototype.activate = function() {
+        this.game.activate(this);
+    }
+
+    BaseMan.prototype.isActive = function() {
+        return this.game.currentCharacter === this;
+    }
+
+    BaseMan.prototype.isLocated = function(x, y) {
+        return this.actor.isLocated(x, y);
+    }
+
+    BaseMan.prototype.move = function(x, y) {
+        this.actor.move(x, y);
     }
 
     return BaseMan;

@@ -3,20 +3,69 @@ define(
     function(CAAT) {
         CAAT.SpriteAction = function(baseMan) {
             CAAT.SpriteAction.superclass.constructor.call(this);
-            this._baseMane = baseMan;
+            this.man = baseMan;
             this.setFrameTime(0, Number.MAX_VALUE);
             return this;
         };
 
         CAAT.SpriteAction.prototype = {
             setBackgroundImage2: function(image, resize) {
-            var si = new CAAT.Foundation.SpriteImage().initialize(image, 1, 6).
-                addAnimation("move", [0, 1, 2, 3, 4, 5], 100);
+                var sizes = this.man.actionSize;
+                var actions = this.man.actions;
+                var si = new CAAT.Foundation.SpriteImage().initialize(image, sizes[0], sizes[1]);
+
+                for (var key in actions) {
+                    var action = actions[key];
+
+                    si.addAnimation(action.name, action.sprites, action.time)
+                }
                 CAAT.SpriteAction.superclass.setBackgroundImage.call(this, si, resize).setBackgroundImage(si);
 
                 return this;
+            },
+            register: function(container) {
+                this.setBackgroundImage2(this.man.actionFile);
+                this.setLocation(this.man.respawn[0], this.man.respawn[1]).playAnimation("stand");
+                container.addChild(this);
+
+            },
+            mouseClick: function(mouseEvent) {
+                this.man.activate();
+            },
+            mouseEnter: function(mouseEvent) {
+                document.body.style.cursor = 'pointer';
+            },
+            mouseExit: function(mouseEvent) {
+                document.body.style.cursor = 'default';
+            },
+            isLocated: function(x, y) {
+                return (this.x == x) && (this.y == y);
+            },
+            move: function(x, y) {
+                var self = this;
+                var path = new CAAT.Path();
+                path.beginPath(this.x, this.y);
+                path.addLineTo(x, y, 'black');
+                path.endPath();
+
+                if (this.x > x) {
+                    var cb = new CAAT.ScaleBehavior().
+                        setFrameTime(0, 500).
+                        setValues(-1, -1, 1, 1, 0.6, 0);
+                    this.addBehavior(cb);
+                }
+
+                var pb = new CAAT.PathBehavior().
+                    setFrameTime(200, 2000).
+                    setPath(path);
+
+                pb.addListener({behaviorExpired: function(behavior, time, actor){
+                    {self.playAnimation("stand")}
+                }});
+                this.playAnimation("move").addBehavior(pb);
             }
-        }
+
+    }
 
         extend(CAAT.SpriteAction, CAAT.Actor);
         return CAAT.SpriteAction;
