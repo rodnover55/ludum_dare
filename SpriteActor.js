@@ -12,12 +12,21 @@ define(
             setBackgroundImage2: function(image, resize) {
                 var sizes = this.man.actionSize;
                 var actions = this.man.actions;
+                var self = this;
                 var si = new CAAT.Foundation.SpriteImage().initialize(image, sizes[0], sizes[1]);
 
                 for (var key in actions) {
                     var action = actions[key];
 
-                    si.addAnimation(action.name, action.sprites, action.time)
+                    var reset = action.reset || false;
+                    if (reset) {
+                        si.addAnimation(action.name, action.sprites, action.time, function(spriteImage, time) {
+                            spriteImage.playAnimation('stand');
+                        })
+                    } else {
+                        si.addAnimation(action.name, action.sprites, action.time)
+                    }
+
                 }
                 CAAT.SpriteAction.superclass.setBackgroundImage.call(this, si, resize).setBackgroundImage(si);
 

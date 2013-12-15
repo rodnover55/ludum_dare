@@ -11,9 +11,9 @@ define(function() {
         this.man = man;
     }
 
-//    BaseAbility.prototype.doAction = function() {
-//
-//    }
+    BaseAbility.prototype.doAction = function() {
+        this.man.actor.spriteActor.playAnimation('kick');
+    }
 
     return BaseAbility;
 });

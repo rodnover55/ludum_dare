@@ -4,6 +4,7 @@
 define(['BaseSubject'], function(BaseSubject){
     return {
         success: function(self, caller){
+            caller.doAction();
             console.log(self, caller, 'success');
             self.convertTo(self.oncomplete);
 

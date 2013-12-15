@@ -12,6 +12,11 @@ define(function () {
                 move: {
                     sprites: [6, 7, 8, 9, 10, 11],
                     time: 100
+                },
+                kick: {
+                    time: 100,
+                    sprites: [18, 19, 20, 21, 22],
+                    reset: true
                 }
             },
             inventory: {
@@ -37,7 +42,6 @@ define(function () {
                 }
 
             },
-            abilities: ['power'],
             inventory: {
             },
             icon: 'man-experienced-icon',

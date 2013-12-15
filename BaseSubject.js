@@ -1,10 +1,13 @@
 define(['baseAction',
-    'GarbageSubject', 'BaseSubjectActor'], function(BaseAction, GarbageSubject, BaseSubjectActor){
+    'GarbageSubject', 'CrashedGarbageSubject', 'BaseSubjectActor'],
+    function(BaseAction, GarbageSubject, CrashedGarbageSubject, BaseSubjectActor){
+
+    var callbacks = {
+        'garbage': GarbageSubject,
+        'crashedGarbage': CrashedGarbageSubject
+    };
 
     var BaseSubject = function(options, game) {
-        var callbacks ={
-            'garbage': GarbageSubject
-        };
 
         var self = this;
 
@@ -20,10 +23,12 @@ define(['baseAction',
         self.respawn = options.respawn;
         self.point = options.point;
         self.state = 'active';
+        self.show = (options.show == undefined) || options.show;
+        self.options = options;
 
         self.actor = new BaseSubjectActor(this);
         self.canList = options.canList;
-        self.oncomplete = (typeof options.oncomplete == 'undefined') ? {} : options.oncomplete;
+        self.oncomplete = options.oncomplete;
 //        self.parseAction(options.action);
 //        self.successCallback = options.successCallback;
 //        self.failCallback = options.failCallback;
@@ -34,18 +39,37 @@ define(['baseAction',
 //                callback: self.parseCallback(callback)
 //            });
 //        }
+        return this;
     }
-    BaseSubject.prototype.convertTo = function(options) {
+    BaseSubject.prototype.convertTo = function(subject_name) {
+        if (subject_name == undefined) {
+            return;
+        }
+
         var self = this;
+
+        self.container.removeChild(self.actor);
+        var options = self.game.subjects[subject_name].options;
         for (var i in options) {
             self[i] = options[i];
         }
+
+        var self = this;
+
+        if (options.name in callbacks) {
+            var data = callbacks[options.name];
+            self.fail = data.fail;
+            self.success = data.success;
+        }
+
+        self.container.addChild(new BaseSubjectActor(self).setLocation(500, 500). setFillStyle('black'));
+        self.register(self.container);
         console.log(self);
     }
 
     BaseSubject.prototype.isManCanUse = function(man) {
         man = man || this.game.currentCharacter;
-        if (this.canList.length == 0) {
+        if ((this.canList == undefined) || (this.canList.length == 0) || (man.activeAbility == null)) {
             return false;
         }
 
@@ -102,6 +126,7 @@ define(['baseAction',
     }
 
     BaseSubject.prototype.register = function(container) {
+        this.container = container;
         this.actor.register(container);
     }
 

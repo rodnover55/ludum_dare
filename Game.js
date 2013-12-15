@@ -35,7 +35,7 @@ define(['baseMan', 'baseTool', 'ability', 'BaseSubject', 'baseAction', 'Stage', 
     Game.prototype.get_subjects = function(options) {
         var subjects = [];
         for (var key in options) {
-            subjects.push(new BaseSubject(options[key], this));
+            subjects[key] = new BaseSubject(options[key], this);
         }
 
         return subjects;
@@ -78,7 +78,10 @@ define(['baseMan', 'baseTool', 'ability', 'BaseSubject', 'baseAction', 'Stage', 
 
         for (key in this.subjects) {
             var subject = this.subjects[key];
-            subject.register(container);
+            if (subject.show) {
+                subject.register(container);
+            }
+
         }
 
         for (var key in this.mans) {

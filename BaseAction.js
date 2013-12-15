@@ -7,6 +7,7 @@ define(function() {
         self.name = name;
         self.beforeCallback = (typeof options.before == 'undefined') ? function() {} : options.before;
         self.afterCallback = (typeof options.after == 'undefined') ? function() {} : options.after;
+        self.reset = options.reset;
 
         self.performAction = function(ActionCaller, Subject, options) {
             self.beforeCallback(Subject, options);
