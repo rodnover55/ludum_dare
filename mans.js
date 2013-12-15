@@ -70,6 +70,11 @@ define(function () {
                 move: {
                     sprites: [0, 1, 2, 3, 4],
                     time: 100
+                },
+                pick: {
+                    sprites: [16, 17, 18, 19, 20, 21, 22, 23],
+                    time: 200,
+                    reset: true
                 }
             },
             abilities: ['getComputer'],

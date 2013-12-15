@@ -16,6 +16,8 @@ define(function() {
             this.man.actor.spriteActor.playAnimation('kick');
         } else if (this.name == 'getSlingShot') {
             this.man.actor.spriteActor.playAnimation('pick');
+        } else if (this.name == 'getComputer') {
+            this.man.actor.spriteActor.playAnimation('pick');
         }
     }
 

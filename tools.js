@@ -15,13 +15,15 @@ define(['SlingShotTool', 'ComputerTool'], function (SlingShotTool, ComputerTool)
         },
         computer: {
             name: 'computer',
-            icon: 'computerIcon',
+            icon: 'tool-comp',
             canList: ['getComputer'],
             abilities: ['computerMinigame'],
             action: {
                 name: 'game',
                 sprite: 'blabla'
             },
+            respawn: [650, 500],
+            point: [600, 450],
             callbacks: ComputerTool.callbacks
         }
     };
