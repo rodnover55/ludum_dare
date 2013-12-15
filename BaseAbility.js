@@ -12,7 +12,11 @@ define(function() {
     }
 
     BaseAbility.prototype.doAction = function() {
-        this.man.actor.spriteActor.playAnimation('kick');
+        if (this.name == 'power') {
+            this.man.actor.spriteActor.playAnimation('kick');
+        } else if (this.name == 'getSlingShot') {
+            this.man.actor.spriteActor.playAnimation('pick');
+        }
     }
 
     return BaseAbility;

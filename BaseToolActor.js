@@ -25,7 +25,7 @@ define(
                 if (!this.tool.game.currentCharacter.isLocated(this.tool.point[0], this.tool.point[1])) {
                     this.tool.game.currentCharacter.move(this.tool.point[0], this.tool.point[1]);
                 } else {
-                    this.tool.game.currentCharacter.addTool(this.tool);
+                    this.tool.doIt(this.tool.game.currentCharacter.activeAbility);
                     this.parent.removeChild(this);
                 }
             },

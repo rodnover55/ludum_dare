@@ -3,6 +3,7 @@ define(function() {
         callbacks: {
             success: function(self, caller) {
                 caller.man.addTool(self);
+                caller.doAction();
                 caller.man.activeAbility = self.game.abilities.slingshooting;
                 console.log(self, caller, 'success');
             },

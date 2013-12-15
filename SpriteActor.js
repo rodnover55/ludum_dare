@@ -57,6 +57,7 @@ define(
                 path.addLineTo(x, y, 'black');
                 path.endPath();
 
+                self.emptyBehaviorList();
                 if (this.x > x) {
                     var cb = new CAAT.ScaleBehavior().
                         setFrameTime(0, 500).
@@ -69,7 +70,7 @@ define(
                     setPath(path);
 
                 pb.addListener({behaviorExpired: function(behavior, time, actor){
-                    {self.playAnimation("stand")}
+                    {actor.playAnimation("stand")}
                 }});
                 this.playAnimation("move").addBehavior(pb);
             }
