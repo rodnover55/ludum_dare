@@ -2,8 +2,8 @@
  * Created by rodnover on 14.12.13.
  */
 define(
-    ['caat'],
-    function (CAAT) {
+    ['caat', 'engineerGame'],
+    function (CAAT, EngineerGame) {
         const IMAGES_WIDTH = 1200;
         const IMAGES_HEIGHT = 668;
 
@@ -22,6 +22,15 @@ define(
                     }
                 );
             },
+            startMiniGame: function(options) {
+                self.director = new self.CAAT.Foundation.Director().initialize(IMAGES_WIDTH, IMAGES_HEIGHT,
+                    document.getElementById('viewport'));
+                    var miniGameScene = self.director.createScene().setBounds( 0,0,400, 400).setFillStyle('#323232');
+                    var miniGame = new EngineerGame(options);
+                    miniGame.init(miniGame, self.director, miniGameScene);
+                    console.log('><<<<<<<<Minigame');
+                    console.log(miniGame);
+            },
             init: function(game) {
                 // create a director object
 
@@ -30,6 +39,16 @@ define(
 
                 self.director = new self.CAAT.Foundation.Director().initialize(IMAGES_WIDTH, IMAGES_HEIGHT,
                     document.getElementById('viewport'));
+
+                try {
+//                    var miniGameScene = self.director.createScene().setBounds( 0,0,400, 400).setFillStyle('#323232');
+//                    var miniGame = new EngineerGame(0);
+//                    miniGame.init(miniGame, self.director, miniGameScene);
+//                    console.log('><<<<<<<<Minigame');
+//                    console.log(miniGame);
+
+//                    CAAT.loop(0);
+                } catch(e) { console.log(e); }
 
                 var backgroundImage = [
                     {id: 'background', url: 'resources/stage1/background.png'},
@@ -62,6 +81,7 @@ define(
                         }
                     }
                 );
+                game.scene = self;
 
 
             },
