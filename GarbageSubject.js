@@ -3,11 +3,13 @@
  */
 define(['BaseSubject'], function(BaseSubject){
     return {
-        success: function(caller){
-            console.log('success');
+        success: function(self, caller){
+            console.log(self, caller, 'success');
+            self.convertTo(self.oncomplete);
+
         },
-        fail: function(caller){
-            console.log('fail');
+        fail: function(self, caller){
+            console.log(self, caller, 'fail');
         }
     };
 });

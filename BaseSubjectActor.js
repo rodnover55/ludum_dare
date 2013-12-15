@@ -18,13 +18,14 @@ define(
             },
             mouseClick: function(mouseEvent) {
                 // TODO: Если не в точке - прийти в неё
+
                 if (!this.subject.isManCanUse()) {
                     return
                 }
                 if (!this.subject.game.currentCharacter.isLocated(this.subject.point[0], this.subject.point[1])) {
                     this.subject.game.currentCharacter.move(this.subject.point[0], this.subject.point[1]);
                 } else {
-                    this.subject.doIt();
+                    this.subject.doIt(this.subject.game.currentCharacter.activeAbility);
                 }
             },
             mouseEnter: function(mouseEvent) {

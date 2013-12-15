@@ -19,9 +19,11 @@ define(['baseAction',
         self.icon = options.icon;
         self.respawn = options.respawn;
         self.point = options.point;
+        self.state = 'active';
 
         self.actor = new BaseSubjectActor(this);
         self.canList = options.canList;
+        self.oncomplete = (typeof options.oncomplete == 'undefined') ? {} : options.oncomplete;
 //        self.parseAction(options.action);
 //        self.successCallback = options.successCallback;
 //        self.failCallback = options.failCallback;
@@ -33,8 +35,12 @@ define(['baseAction',
 //            });
 //        }
     }
-    BaseSubject.prototype.destroySelf = function(context) {
-        delete window[context];
+    BaseSubject.prototype.convertTo = function(options) {
+        var self = this;
+        for (var i in options) {
+            self[i] = options[i];
+        }
+        console.log(self);
     }
 
     BaseSubject.prototype.isManCanUse = function(man) {
@@ -52,16 +58,16 @@ define(['baseAction',
     }
 
     BaseSubject.prototype.doIt = function(ability) {
-//        ability = ability || this.game.currentCharacter.activeAbility;
+        ability = ability || this.game.currentCharacter.activeAbility;
         var self = this;
-        if (!self.isManCanUse()) {
+        if (!self.isManCanUse(ability.man) || self.state != 'active') {
             if (self.fail != undefined) {
-                self.fail();
+                self.fail(self, ability);
             }
             return false;
         } else {
             if (self.success != undefined) {
-                self.success();
+                self.success(self, ability);
             }
             return true;
         }
@@ -99,7 +105,5 @@ define(['baseAction',
         this.actor.register(container);
     }
 
-    return BaseSubject;/*function(options) {
-        return options['className'](options, this);
-    };*/
+    return BaseSubject;
 })
