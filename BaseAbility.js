@@ -18,6 +18,8 @@ define(function() {
             this.man.actor.spriteActor.playAnimation('pick');
         } else if (this.name == 'getComputer') {
             this.man.actor.spriteActor.playAnimation('pick');
+        } else if (this.name == 'computerMinigame') {
+            self.game.scene.startMi
         }
     }
 
