@@ -19,7 +19,15 @@ define(function() {
         } else if (this.name == 'getComputer') {
             this.man.actor.spriteActor.playAnimation('pick');
         } else if (this.name == 'computerMinigame') {
-            self.game.scene.startMi
+//            self.game.scene.startMiniGame({
+//                NUM: 0,
+//                successCallback: function() {
+//                    console.log('dsgdsgs');
+//                },
+//                failCallback: function() {
+//                    console.log('fgfdgdg');
+//                }
+//            });
         }
     }
 

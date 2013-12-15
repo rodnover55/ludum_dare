@@ -1,4 +1,4 @@
-define(['minigames/engineer/EngineerGame', 'caat'], function(EngineerGame, CAAT) {
+define(['caat'], function(CAAT) {
     return {
         callbacks: {
             success: function(self, caller) {
