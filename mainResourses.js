@@ -9,6 +9,11 @@ define(['mans', 'tools', 'subjects'], function (mans, tools, subjects) {
                     name: 'power',
                     icon: 'ability-power',
                     className: 'PowerAbility'
+                },
+                getSlingShot: {
+                    name: "getSlingShot",
+                    icon: '',
+                    className: 'GetAbility'
                 }
         },
         stages: [
