@@ -43,7 +43,9 @@ define(
                     { id: 'man-sweet-sprite', url: 'resources/men/sweet-actions.png' },
 
                     { id: 'subject-garbage', url: 'resources/subjects/garbage.png' },
-                    { id: 'subject-crashed-garbage', url: 'resources/subjects/crashed-garbage.png' }];
+                    { id: 'subject-crashed-garbage', url: 'resources/subjects/crashed-garbage.png' },
+
+                    { id: 'tool-sling', url: 'resources/tools/sling.png' }];
 
                 new self.CAAT.Module.Preloader.ImagePreloader().loadImages(
                     backgroundImage,

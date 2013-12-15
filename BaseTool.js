@@ -1,4 +1,4 @@
-define(['ability'], function(Ability){
+define(['ability', 'BaseToolActor'], function(Ability, BaseToolActor){
     var BaseTool = function(options, game) {
         var self = this;
         self.abilities = self.parseAbilities(options.abilities);
@@ -10,6 +10,10 @@ define(['ability'], function(Ability){
         self.big = (typeof options.big == 'undefined') ? false : options.big;
         self.actor = null;
         self.callbacks = options.callbacks;
+        self.respawn = options.respawn;
+        self.point = options.point;
+
+        self.actor = new BaseToolActor(self);
         //TODO: захуюяр актора
 
         self.clone = function() {
@@ -69,7 +73,7 @@ define(['ability'], function(Ability){
 
     BaseTool.prototype.isManCanUse = function(man) {
         for (var index in this.canList) {
-            if (this.canList[index].name == man.name) {
+            if (this.canList[index] == man.name) {
                 return true;
             }
         }

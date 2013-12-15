@@ -15,6 +15,7 @@ define(['baseAction',
             var data = callbacks[options.name];
             self.fail = data.fail;
             self.success = data.success;
+            self.data = data;
         }
 
         self.game = game;
@@ -60,9 +61,10 @@ define(['baseAction',
             var data = callbacks[options.name];
             self.fail = data.fail;
             self.success = data.success;
+            self.data = data;
+            data.init(self, self.container);
         }
 
-        self.container.addChild(new BaseSubjectActor(self).setLocation(500, 500). setFillStyle('black'));
         self.register(self.container);
         console.log(self);
     }

@@ -1,7 +1,9 @@
 define(function() {
+    var sling;
     return {
-        init: function(container) {
-            
+        init: function(self, container) {
+            sling = self.game.tools['slingshot'];
+            sling.register(container);
         }
     }
 
