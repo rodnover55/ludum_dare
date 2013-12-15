@@ -36,6 +36,8 @@ define(
                     { id: 'man-strong-sprite', url: 'resources/men/strong-actions.png' },
 
                     { id: 'man-experienced-icon', url: 'resources/men/experienced.png' },
+                    { id: 'man-experienced-sprite', url: 'resources/men/experienced-actions.png' },
+
 
                     { id: 'man-sweet-icon', url: 'resources/men/sweet.png' },
                     { id: 'man-sweet-sprite', url: 'resources/men/sweet-actions.png' },

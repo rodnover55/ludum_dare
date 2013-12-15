@@ -13,21 +13,8 @@ define(function () {
                     sprites: [6, 7, 8, 9, 10, 11],
                     time: 100
                 }
-//                jump : {
-//                    name: "jump",
-//                    sprite: "strongManJump"
-//                },
-//                crash : {
-//                    name: "crash",
-//                    action: "crash"
-//                },
-//                say : {
-//                    name: "say",
-//                    action: "say"
-//                }
             },
             inventory: {
-
             },
             abilities: ['power'],
             icon: 'man-strong-icon',
@@ -35,25 +22,29 @@ define(function () {
             actionSize: [4, 6],
             respawn: [300, 300]
         },
-//        experienced: {
-//            name: 'experienced',
-//            speed: 1,
-//            jump: 1,
-//            actions: {
-//                jump : {
-//                    name: "jump",
-//                    sprite: "experiencedManJump"
-//                }
-//            },
-//            inventory: {
-//
-//            },
-//            abilities: {
-//            },
-//            icon: 'man-experienced-icon',
-//            actionFile: 'man-strong-sprite',
-//            respawn: [370, 300]
-//        }//,
+        experienced: {
+            name: 'experienced',
+            speed: 1,
+            jump: 1,
+            actions: {
+                stand: {
+                    sprites: [0, 1, 2, 3, 4, 5, 6],
+                    time: 300
+                },
+                move: {
+                    sprites: [0, 1, 2, 3, 4, 5, 6],
+                    time: 300
+                }
+
+            },
+            abilities: ['power'],
+            inventory: {
+            },
+            icon: 'man-experienced-icon',
+            actionSize: [1, 7],
+            actionFile: 'man-experienced-sprite',
+            respawn: [370, 300]
+        },
         sweet: {
             name: 'sweet',
             speed: 1,
@@ -61,7 +52,6 @@ define(function () {
             icon: 'man-sweet-icon',
             actionFile: 'man-sweet-sprite',
             respawn: [560, 350],
-            abilities: ['power'],
             actions: {
                 stand: {
                     sprites: [24, 25, 26, 27, 28, 29, 30],
