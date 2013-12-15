@@ -30,7 +30,7 @@ define(['CrashedGarbageSubject'], function (crashedGarbageSubject) {
         spaceShipBrokenWindow: {
             name: "spaceShipBrokenWindow",
             icon: "subject-space-ship-broken-window",
-            canList: [],
+            canList: ['power'],
             className: 'SpaceShipSubject',
             respawn: [550, 170],
             show: false,

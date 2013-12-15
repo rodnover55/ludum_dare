@@ -60,13 +60,18 @@ define(
                 self.emptyBehaviorList();
                 if (this.x > x) {
                     var cb = new CAAT.ScaleBehavior().
-                        setFrameTime(0, 500).
+                        setFrameTime(self.time, 200).
                         setValues(-1, -1, 1, 1, 0.6, 0);
+                    this.addBehavior(cb);
+                } else {
+                    var cb = new CAAT.ScaleBehavior().
+                        setFrameTime(self.time, 200).
+                        setValues(1, 1, 1, 1, 0.6, 0);
                     this.addBehavior(cb);
                 }
 
                 var pb = new CAAT.PathBehavior().
-                    setFrameTime(200, 2000).
+                    setFrameTime(self.time, 6.5 * Math.abs(this.x - x)).
                     setPath(path);
 
                 pb.addListener({behaviorExpired: function(behavior, time, actor){

@@ -1,10 +1,11 @@
 define(['baseAction',
-    'GarbageSubject', 'CrashedGarbageSubject', 'BaseSubjectActor'],
-    function(BaseAction, GarbageSubject, CrashedGarbageSubject, BaseSubjectActor){
+    'GarbageSubject', 'CrashedGarbageSubject', 'BaseSubjectActor', 'SpaceShipSubject'],
+    function(BaseAction, GarbageSubject, CrashedGarbageSubject, BaseSubjectActor, SpaceShipSubject){
 
     var callbacks = {
         'garbage': GarbageSubject,
-        'crashedGarbage': CrashedGarbageSubject
+        'crashedGarbage': CrashedGarbageSubject,
+        'spaceShip': SpaceShipSubject
     };
 
     var BaseSubject = function(options, game) {
@@ -49,6 +50,7 @@ define(['baseAction',
 
         var self = this;
 
+        var ind = self.container.findChild(self.actor);
         self.container.removeChild(self.actor);
         var options = self.game.subjects[subject_name].options;
         for (var i in options) {
@@ -65,7 +67,7 @@ define(['baseAction',
             data.init(self, self.container);
         }
 
-        self.register(self.container);
+        self.register(self.container, ind);
         console.log(self);
     }
 
@@ -127,9 +129,9 @@ define(['baseAction',
         this.action = new BaseAction(action);
     }
 
-    BaseSubject.prototype.register = function(container) {
+    BaseSubject.prototype.register = function(container, ind) {
         this.container = container;
-        this.actor.register(container);
+        this.actor.register(container, ind);
     }
 
     return BaseSubject;

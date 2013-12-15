@@ -6,7 +6,7 @@ define(['BaseSubject'], function(BaseSubject){
         success: function(self, caller){
             caller.doAction();
             console.log(self, caller, 'kick space ship success');
-//            self.convertTo(self.oncomplete);
+            self.convertTo(self.oncomplete);
 
         },
         fail: function(self, caller){
