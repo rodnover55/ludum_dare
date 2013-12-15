@@ -7,7 +7,10 @@ define(
 
         var EngineerGame = function(options) {
             var self = this;
-            self.setNum = options;
+            self.setNum = options.NUM;
+            self.successCallback = options.successCallback;
+            console.log(self);
+            self.failCallback = options.failCallback;
             self.setupImageSet();
             self.status = 'not started';
         }
@@ -92,6 +95,7 @@ define(
                         message.setText('You Loose').centerOn(110, 260);
                         scene.addChild(message);
                         console.log('You Loose');
+                        self.failCallback();
                         return EngineerGame;
                     }
                 }
@@ -160,6 +164,7 @@ define(
             scene.removeChild(text);
             scene.addChild(message);
             self.state = 'win';
+            self.successCallback();
         }
 
         return EngineerGame;
