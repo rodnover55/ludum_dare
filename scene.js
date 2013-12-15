@@ -2,8 +2,8 @@
  * Created by rodnover on 14.12.13.
  */
 define(
-    ['caat', 'engineerGame'],
-    function (CAAT, EngineerGame) {
+    ['caat'],
+    function (CAAT) {
         const IMAGES_WIDTH = 1200;
         const IMAGES_HEIGHT = 668;
 
@@ -40,16 +40,6 @@ define(
                 self.director = new self.CAAT.Foundation.Director().initialize(IMAGES_WIDTH, IMAGES_HEIGHT,
                     document.getElementById('viewport'));
 
-                try {
-//                    var miniGameScene = self.director.createScene().setBounds( 0,0,400, 400).setFillStyle('#323232');
-//                    var miniGame = new EngineerGame(0);
-//                    miniGame.init(miniGame, self.director, miniGameScene);
-//                    console.log('><<<<<<<<Minigame');
-//                    console.log(miniGame);
-
-//                    CAAT.loop(0);
-                } catch(e) { console.log(e); }
-
                 var backgroundImage = [
                     {id: 'background', url: 'resources/stage1/background.png'},
                     { id: 'man-strong-icon', url: 'resources/men/strong.png' },
@@ -66,6 +56,7 @@ define(
                     { id: 'subject-crashed-garbage', url: 'resources/subjects/crashed-garbage.png' },
 
                     { id: 'tool-sling', url: 'resources/tools/sling.png' },
+                    { id: 'tool-comp', url: 'resources/tools/comp.png' },
 
                     { id: 'subject-space-ship', url: 'resources/subjects/space-ship.png' },
                     { id: 'subject-space-ship-broken-window', url: 'resources/subjects/space-ship-broken-window.png' }

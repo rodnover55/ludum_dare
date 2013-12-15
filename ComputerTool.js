@@ -1,8 +1,7 @@
-define(['caat'], function(CAAT) {
+define(['minigames/engineer/EngineerGame', 'caat'], function(EngineerGame, CAAT) {
     return {
         callbacks: {
             success: function(self, caller) {
-                console.log(self);
                 caller.man.addTool(self);
                 caller.man.activeAbility = self.game.abilities.computerMinigame;
                 self.game.scene.startMiniGame({
@@ -14,6 +13,8 @@ define(['caat'], function(CAAT) {
                         console.log('fgfdgdg');
                     }
                 });
+                caller.doAction();
+                caller.man.activeAbility = self.game.abilities.computerMinigame;
                 console.log(self, caller, 'success');
             },
             fail: function(self, caller) {

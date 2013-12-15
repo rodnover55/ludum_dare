@@ -8,12 +8,13 @@ define(
             return this;
         }
         CAAT.BaseSubjectActor.prototype = {
-            register: function(container, ind) {
+            register: function(container) {
                 var self = this;
+                container.setZOrder(this, 0);
+
                 self.setLocation(self.subject.respawn[0], self.subject.respawn[1]);
                 self.setBackgroundImage(this.subject.icon, true);
-                container.addChildAt(self, ind);
-                container.setZOrder(self, 5);
+                container.addChild(self);
 
             },
             mouseClick: function(mouseEvent) {
