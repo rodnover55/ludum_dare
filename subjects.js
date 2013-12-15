@@ -17,6 +17,25 @@ define(['CrashedGarbageSubject'], function (crashedGarbageSubject) {
             show: false,
             canList: []/*,,
             oncomplete: crashedGarbageSubject
-        */}
+        */},
+        spaceShip: {
+            name: "spaceShip",
+            icon: "subject-space-ship",
+            canList: ['power'],
+            className: 'SpaceShipSubject',
+            respawn: [550, 170],
+            point: [630, 310],
+            oncomplete: 'spaceShipBrokenWindow'
+        },
+        spaceShipBrokenWindow: {
+            name: "spaceShipBrokenWindow",
+            icon: "subject-space-ship-broken-window",
+            canList: [],
+            className: 'SpaceShipSubject',
+            respawn: [550, 170],
+            show: false,
+            point: [630, 310]
+//            oncomplete: 'SpaceShipBrokenWindow'
+        }
     };
 });
