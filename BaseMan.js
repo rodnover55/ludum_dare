@@ -1,15 +1,31 @@
 define(['baseManActor', 'ability', 'baseTool', 'baseAction'],
     function(BaseManActor, Ability, BaseTool, BaseAction) {
 
-    var BaseMan = function(options) {
+    var BaseMan = function(options, game) {
         var self = this;
+
+        self.game = game;
+
+        if (self.game.currentCharacter == null) {
+            self.activate();
+        }
         self.name = options.name;
         self.speed = options.speed;
         self.jump = options.jump;
         self.icon = options.icon;
         self.actions = self.parseActions(options.actions);
-        self.abilities = (typeof options.abilities == 'undefined') ?  {} : options.abilities;
-        self.inventory = (typeof options.inventory == 'undefined') ? {} : options.inventory;
+
+        self.respawn = options.respawn;
+
+        self.abilities = [];
+        if ((typeof options.abilities != 'undefined') && (options.abilities.length > 0)) {
+            for (var key in options.abilities) {
+                self.abilities.push(this.game.abilities[key]);
+            }
+        }
+
+        self.inventory = (typeof options.inventory == 'undefined') ? [] : options.inventory;
+        self.activeAbility = (self.abilities.length > 0) ? (self.abilities[0]) : (null);
 
         self.performAction = function(actionName, Subject, options) {
             self.actions[actionName].performAction(self, Subject, options);
@@ -73,6 +89,22 @@ define(['baseManActor', 'ability', 'baseTool', 'baseAction'],
 //            setAutoRotate(true, CAAT.Behavior.PathBehavior.autorotate.LEFT_TO_RIGHT);
 //
 //        self.spriteActor.addBehavior(path);
+    }
+
+    BaseMan.prototype.activate = function() {
+        this.game.activate(this);
+    }
+
+    BaseMan.prototype.isActive = function() {
+        return this.game.currentCharacter === this;
+    }
+
+    BaseMan.prototype.isLocated = function(x, y) {
+        return this.actor.isLocated(x, y);
+    }
+
+    BaseMan.prototype.move = function(x, y) {
+        this.actor.move(x, y);
     }
 
     return BaseMan;

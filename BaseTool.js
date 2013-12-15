@@ -42,7 +42,7 @@ define(['ability'], function(Ability){
     }
 
     BaseTool.prototype.isManCanUse = function(man) {
-        for (index in this.canList) {
+        for (var index in this.canList) {
             if (this.canList[index].name == man.name) {
                 return true;
             }

@@ -33,7 +33,8 @@ define(
 
                 var backgroundImage = [{id: 'background', url: 'resources/stage1/background.png'},
                     { id: 'man-strong-icon', url: 'resources/men/strong.png' },
-                    { id: 'man-strong-sprite', url: 'resources/men/strong-actions.png' }];
+                    { id: 'man-strong-sprite', url: 'resources/men/strong-actions.png' },
+                    { id: 'subject-garbage', url: 'resources/subjects/garbage.png' }];
 
                 new self.CAAT.Module.Preloader.ImagePreloader().loadImages(
                     backgroundImage,
@@ -59,17 +60,7 @@ define(
                 // add a scene object to the director.
                 var scene = self.director.createScene();
 
-//                var pathActor = ;
-
-                container.addChild(new CAAT.Foundation.UI.PathActor().
-                    setLocation(0, 0, IMAGES_WIDTH, IMAGES_HEIGHT).
-                    create().
-                    setPath(game.currentStage().path).
-                    setPath(self.path).
-                    setInteractive(false));
-
                 scene.addChild(container);
-
 
                 game.register(container, scene);
 

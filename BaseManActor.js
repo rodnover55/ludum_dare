@@ -25,6 +25,12 @@ define(
         register: function(scene, container, opt) {
             this.iconActor.register(scene, opt);
             this.spriteActor.register(container)
+        },
+        move: function(x, y) {
+            this.spriteActor.move(x, y);
+        },
+        isLocated: function(x, y) {
+            return this.spriteActor.isLocated(x, y);
         }
     }
 

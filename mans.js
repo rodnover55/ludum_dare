@@ -21,10 +21,9 @@ define(function () {
             inventory: {
 
             },
-            abilities: {
-
-            },
-            icon: 'strongManIcon'
+            abilities: ['power'],
+            icon: 'strongManIcon',
+            respawn: [300, 300]
         },
         experienced: {
             name: 'experienced',
@@ -41,7 +40,8 @@ define(function () {
             },
             abilities: {
             },
-            icon: 'strongManIcon'
+            icon: 'strongManIcon',
+            respawn: [370, 300]
         }
     };
 });
