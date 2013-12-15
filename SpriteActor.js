@@ -3,28 +3,34 @@ define(
     function(CAAT) {
         CAAT.SpriteAction = function(baseMan) {
             CAAT.SpriteAction.superclass.constructor.call(this);
-            this._baseMane = baseMan;
+            this.man = baseMan;
             this.setFrameTime(0, Number.MAX_VALUE);
             return this;
         };
 
         CAAT.SpriteAction.prototype = {
             setBackgroundImage2: function(image, resize) {
-            var si = new CAAT.Foundation.SpriteImage().initialize(image, 4, 6).
-                addAnimation("stand", [12, 13, 14], 300).
-                addAnimation("move", [6, 7, 8, 9, 10, 11], 100);
+                var sizes = this.man.actionSize;
+                var actions = this.man.actions;
+                var si = new CAAT.Foundation.SpriteImage().initialize(image, sizes[0], sizes[1]);
+
+                for (var key in actions) {
+                    var action = actions[key];
+
+                    si.addAnimation(action.name, action.sprites, action.time)
+                }
                 CAAT.SpriteAction.superclass.setBackgroundImage.call(this, si, resize).setBackgroundImage(si);
 
                 return this;
             },
             register: function(container) {
-                this.setBackgroundImage2('man-strong-sprite');
-                this.setLocation(this._baseMane.respawn[0], this._baseMane.respawn[1]).playAnimation("stand");
+                this.setBackgroundImage2(this.man.actionFile);
+                this.setLocation(this.man.respawn[0], this.man.respawn[1]).playAnimation("stand");
                 container.addChild(this);
 
             },
             mouseClick: function(mouseEvent) {
-                this._baseMane.activate();
+                this.man.activate();
             },
             mouseEnter: function(mouseEvent) {
                 document.body.style.cursor = 'pointer';

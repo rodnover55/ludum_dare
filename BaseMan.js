@@ -14,6 +14,8 @@ define(['baseManActor', 'ability', 'baseTool', 'baseAction'],
         self.jump = options.jump;
         self.icon = options.icon;
         self.actions = self.parseActions(options.actions);
+        self.actionSize = options.actionSize;
+        self.actionFile = options.actionFile;
 
         self.respawn = options.respawn;
 
@@ -68,10 +70,10 @@ define(['baseManActor', 'ability', 'baseTool', 'baseAction'],
     }
 
     BaseMan.prototype.parseActions = function(actions) {
-        var i;
+        var key;
         var mansActions = {};
-        for (i in actions) {
-            mansActions[actions[i].name] = new BaseAction(actions[i]);
+        for (key in actions) {
+            mansActions[key] = new BaseAction(key, actions[key]);
         }
         return mansActions;
     }

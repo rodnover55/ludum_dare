@@ -1,9 +1,10 @@
 define(function() {
-    var BaseAction = function(options) {
+    var BaseAction = function(name, options) {
 
         var self = this;
-        self.sprite = options.sprite;
-        self.name = options.name;
+        self.sprites = options.sprites;
+        self.time = options.time;
+        self.name = name;
         self.beforeCallback = (typeof options.before == 'undefined') ? function() {} : options.before;
         self.afterCallback = (typeof options.after == 'undefined') ? function() {} : options.after;
 

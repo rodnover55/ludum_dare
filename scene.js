@@ -34,6 +34,12 @@ define(
                 var backgroundImage = [{id: 'background', url: 'resources/stage1/background.png'},
                     { id: 'man-strong-icon', url: 'resources/men/strong.png' },
                     { id: 'man-strong-sprite', url: 'resources/men/strong-actions.png' },
+
+                    { id: 'man-experienced-icon', url: 'resources/men/experienced.png' },
+
+                    { id: 'man-sweet-icon', url: 'resources/men/sweet.png' },
+                    { id: 'man-sweet-sprite', url: 'resources/men/sweet-actions.png' },
+
                     { id: 'subject-garbage', url: 'resources/subjects/garbage.png' }];
 
                 new self.CAAT.Module.Preloader.ImagePreloader().loadImages(

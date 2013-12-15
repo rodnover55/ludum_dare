@@ -44,7 +44,7 @@ define(['baseAction',
         }
 
         for (var index in this.canList) {
-            if (this.canList[index] == man.activeAbility.name) {
+            if ((index in this.canList) && (this.canList[index] == man.activeAbility.name)) {
                 return true;
             }
         }

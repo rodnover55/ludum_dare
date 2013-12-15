@@ -3,7 +3,7 @@ define(
     function(CAAT) {
         CAAT.IconActor = function(baseMan) {
             CAAT.IconActor.superclass.constructor.call(this);
-            this._baseMane = baseMan;
+            this.man = baseMan;
             this.setFrameTime(0, Number.MAX_VALUE);
             return this;
         };
@@ -13,12 +13,12 @@ define(
             register: function(container, opt) {
                 var self = this;
                 self.setLocation(10, opt.height);
-                self.setBackgroundImage('man-strong-icon');
+                self.setBackgroundImage(this.man.icon);
                 container.addChild(self);
                 opt.height += self.height + 10;
             },
             mouseClick: function(mouseEvent) {
-                this._baseMane.activate();
+                this.man.activate();
             },
             mouseEnter: function(mouseEvent) {
                 document.body.style.cursor = 'pointer';
@@ -29,7 +29,7 @@ define(
             paint : function(director, time) {
                 CAAT.IconActor.superclass.paint.call(this, director, time);
 
-                if (this._baseMane.isActive()) {
+                if (this.man.isActive()) {
                     var ctx = director.ctx;
                     ctx.strokeStyle = '#aaa';
                     ctx.strokeRect(0, 0, this.width, this.height);
