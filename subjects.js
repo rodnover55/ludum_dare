@@ -1,4 +1,4 @@
-define(function () {
+define(['CrashedGarbageSubject'], function (crashedGarbageSubject) {
     return {
         tube: {
             name: "garbage",
@@ -6,7 +6,8 @@ define(function () {
             canList: ['power'],
             className: 'GarbageSubject',
             respawn: [50, 360],
-            point: [100, 360]
+            point: [100, 360],
+            oncomplete: crashedGarbageSubject
 //            action: {
 //                name: "crash",
 //                sprite: "tubeCrash"
