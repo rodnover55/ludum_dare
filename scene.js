@@ -22,6 +22,15 @@ define(
                     }
                 );
             },
+            startMiniGame: function(options) {
+                self.director = new self.CAAT.Foundation.Director().initialize(IMAGES_WIDTH, IMAGES_HEIGHT,
+                    document.getElementById('viewport'));
+                    var miniGameScene = self.director.createScene().setBounds( 0,0,400, 400).setFillStyle('#323232');
+                    var miniGame = new EngineerGame(options);
+                    miniGame.init(miniGame, self.director, miniGameScene);
+                    console.log('><<<<<<<<Minigame');
+                    console.log(miniGame);
+            },
             init: function(game) {
                 // create a director object
 
@@ -32,11 +41,11 @@ define(
                     document.getElementById('viewport'));
 
                 try {
-                    var miniGameScene = self.director.createScene().setBounds( 0,0,400, 400).setFillStyle('#323232');
-                    var miniGame = new EngineerGame(0);
-                    miniGame.init(miniGame, self.director, miniGameScene);
-                    console.log('><<<<<<<<Minigame');
-                    console.log(miniGame);
+//                    var miniGameScene = self.director.createScene().setBounds( 0,0,400, 400).setFillStyle('#323232');
+//                    var miniGame = new EngineerGame(0);
+//                    miniGame.init(miniGame, self.director, miniGameScene);
+//                    console.log('><<<<<<<<Minigame');
+//                    console.log(miniGame);
 
 //                    CAAT.loop(0);
                 } catch(e) { console.log(e); }
@@ -72,6 +81,7 @@ define(
                         }
                     }
                 );
+                game.scene = self;
 
 
             },
