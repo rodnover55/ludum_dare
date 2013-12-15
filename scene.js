@@ -31,7 +31,8 @@ define(
                 self.director = new self.CAAT.Foundation.Director().initialize(IMAGES_WIDTH, IMAGES_HEIGHT,
                     document.getElementById('viewport'));
 
-                var backgroundImage = [{id: 'background', url: 'resources/stage1/background.png'},
+                var backgroundImage = [
+                    {id: 'background', url: 'resources/stage1/background.png'},
                     { id: 'man-strong-icon', url: 'resources/men/strong.png' },
                     { id: 'man-strong-sprite', url: 'resources/men/strong-actions.png' },
 
@@ -43,7 +44,11 @@ define(
                     { id: 'man-sweet-sprite', url: 'resources/men/sweet-actions.png' },
 
                     { id: 'subject-garbage', url: 'resources/subjects/garbage.png' },
-                    { id: 'subject-crashed-garbage', url: 'resources/subjects/crashed-garbage.png' }];
+                    { id: 'subject-crashed-garbage', url: 'resources/subjects/crashed-garbage.png' },
+
+                    { id: 'subject-space-ship', url: 'resources/subjects/space-ship.png' },
+
+                ];
 
                 new self.CAAT.Module.Preloader.ImagePreloader().loadImages(
                     backgroundImage,
