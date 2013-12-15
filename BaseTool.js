@@ -23,20 +23,6 @@ define(['ability'], function(Ability){
             );
         }
 
-
-
-
-
-
-        self.addAbilities = function(abilities) {
-            for (var i=0; i < self.abilities.length; i++) {
-                var Ability = self.abilities[i];
-                if (! (Ability.name in abilities))
-                abilities[Ability.name] = Ability;
-            }
-            return abilities;
-        }
-
         self.removeAbilities = function(abilities) {
             for (var i=0; i < self.abilities.length; i++) {
                 var Ability = self.abilities[i];
@@ -47,6 +33,14 @@ define(['ability'], function(Ability){
         }
 
 
+    }
+
+    BaseTool.prototype.addAbilities = function(man) {
+        var self = this;
+        for (var i in self.abilities) {
+            var abilityName = self.abilities[i];
+            man.abilities.push(man.game.abilities[abilityName]);
+        }
     }
 
     BaseTool.prototype.doIt = function(ability) {
@@ -84,7 +78,7 @@ define(['ability'], function(Ability){
     BaseTool.prototype.parseAbilities = function(abilities) {
         var i, list = {};
         for(i in abilities) {
-            list[abilities[i].name] = new Ability(abilities[i]);
+            list[i] = abilities[i];
         }
         return list;
     }

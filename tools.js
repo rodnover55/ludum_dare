@@ -4,7 +4,7 @@ define(['SlingShotTool'], function (SlingShotTool) {
             name: 'slingshot',
             icon: 'slingShotIcon',
             canList: ['getSlingShot'],
-            abilities: ['slingsooting'],
+            abilities: ['slingshooting'],
             action: {
                 name: 'shot',
                 sprite: 'slingshotShot'
